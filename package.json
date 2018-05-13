@@ -1,0 +1,17 @@
+{
+  "name": "mini-url",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/jessypeck/mini-url.git",
+  "author": "Jessica Peck",
+  "license": "MIT",
+  "dependencies": {
+    "base58": "^1.0.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.8",
+    "nodemon": "^1.17.4",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {}
+}
