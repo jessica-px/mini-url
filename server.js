@@ -8,6 +8,7 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://127.0.0.1:27017/urlDB';
 let db;
 const urlHandler = require('./urlHandler');
+const urlFetcher = require('./urlFetcher');
 
 MongoClient.connect(url, (err, client) => {
     if(err) throw err;
@@ -26,17 +27,16 @@ app.get('/', (req, res) => {
     res.sendFile(public + 'index.html');
 });
 
+// Get minified url and redirect to full url
+app.get('/:url', (req, res) => {
+    const inputUrl = req.params.url;
+    urlFetcher.fetch(inputUrl, db, res);
+});
+
+// Get url from form to be minified
 app.post('/:url', (req, res) => {
     const inputUrl = req.body.url;
     const miniUrl = urlHandler.minify(inputUrl, db, res);
-    //console.log('Returned value: ' + miniUrl);
-    if (miniUrl){
-        //res.send("Your mini url: " + miniUrl);
-    }
-    else{
-        //res.send("Please input a valid url.");
-    }
-    
 });
 
 

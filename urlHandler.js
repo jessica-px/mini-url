@@ -1,6 +1,10 @@
 const express = require('express');
 const validUrl = require('valid-url');
 const base58 = require("base58");
+const url = require('url') ;
+const webHost = 'http://localhost:8080/';
+
+const hostname = require('os').hostname;
 
 module.exports = {
     minify : (inputUrl, db, res) => {
@@ -46,7 +50,8 @@ const addToDatabase = (inputUrl, db, httpRes) => {
     db.collection('urls').count((err, res) => {
         if (err) throw err;
         const count = res;
-        const newMiniUrl = "http://" + base58.encode(count) +"/";
+        const newMiniUrl = base58.encode(count);
+        const miniDisplay = webHost + base58.encode(count) +"/";
         const outputUrl = {
             customId: count, url: inputUrl, miniUrl: newMiniUrl
         };
@@ -54,7 +59,7 @@ const addToDatabase = (inputUrl, db, httpRes) => {
             if (err) throw err;
             console.log('Added url: ' + inputUrl);
             // Get database count, convert to miniurl
-            sendMiniUrl(newMiniUrl, httpRes);
+            sendMiniUrl(miniDisplay, httpRes);
         });
 
 
