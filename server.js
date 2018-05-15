@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.port || 8080;
-const public = __dirname + '/public/';
+const path = require('path');
+//const public = __dirname + '/public/';
 
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://127.0.0.1:27017/urlDB';
@@ -17,6 +18,8 @@ MongoClient.connect(url, (err, client) => {
     //db.close();
 })
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({
@@ -24,7 +27,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', (req, res) => {
-    res.sendFile(public + 'index.html');
+    res.sendFile('index.html');
 });
 
 // Get minified url and redirect to full url
@@ -34,7 +37,7 @@ app.get('/:url', (req, res) => {
 });
 
 // Get url from form to be minified
-app.post('/:url', (req, res) => {
+app.post('/userinput/:url', (req, res) => {
     const inputUrl = req.body.url;
     const miniUrl = urlHandler.minify(inputUrl, db, res);
 });

@@ -1,15 +1,23 @@
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mini Url</title>
+    
 </head>
 <body>
-    Mini!
-    <form action='/:url' method='post'>
-        <input type="text" name='url'>
-        <input type='submit' value='Submit'>
-    </form>
+    <div class="gridWrapper">
+        <div class="gridCenter">
+            <h1>Minify</h1>
+            <p>Enter a long url, get a shorter one!</p>
+            <form action='/userinput/:url' method='post'>
+                <input type="text" name='url'>
+                <input type='submit' value='Submit'>
+            </form>
+        </div>
+    </div>
+   
 </body>
 </html>

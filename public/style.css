@@ -1,0 +1,66 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body{
+    min-height: 100%;
+    background-color: lightslategray;
+    font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+}
+
+h1{
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.gridWrapper{
+    display: grid;
+    grid-template-rows: 1fr 2fr 2fr;
+    height: 100%;
+}
+
+.gridCenter{
+    grid-row: 2;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+input{
+    height: 2rem;
+    border: none;
+    border-radius: 10px;
+}
+
+input[type=text]{
+    min-width: 50%;
+    padding-left: 10px;
+    color: black;
+    font-size: 18px;
+}
+
+input[type=text]:focus { 
+    background-color: steelblue;
+    outline: 0;
+    border: 2px black solid;
+    color: white;
+}
+
+input[type=submit]{
+    /* background-color: steelblue;
+    border: 2px black solid; */
+    background-color: white;
+    font-size: 14px;
+    border: 2px transparent solid;
+}
+
+input[type=submit]:hover{
+    background-color: steelblue;
+    outline: 0;
+    border: 2px black solid;
+    color: white;
+    cursor: pointer;
+}
