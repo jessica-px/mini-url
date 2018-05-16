@@ -12,7 +12,7 @@ module.exports = {
         return findMini(inputUrl, db, (dbMini) => {
             // If already in db, return saved miniurl
             if (dbMini){
-                sendMiniUrl(dbMini, res);
+                sendMiniUrl(webHost + dbMini + '/', res);
             }
             // Elif url is valid, make new db entry & return new mini
             else if (validUrl.isUri(inputUrl)){
