@@ -6,14 +6,17 @@ const path = require('path');
 //const public = __dirname + '/public/';
 
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://127.0.0.1:27017/urlDB';
+const mongoUser = 'admin';
+const mongoPw = 'adminpw';
+const mongoUrl = 'mongodb://' + mongoUser + ':' + mongoPw + '@ds119800.mlab.com:19800/mini-url';
+//const mongoUrl = 'mongodb://127.0.0.1:27017/urlDB';
 let db;
 const urlHandler = require('./urlHandler');
 const urlFetcher = require('./urlFetcher');
 
-MongoClient.connect(url, (err, client) => {
+MongoClient.connect(mongoUrl, (err, client) => {
     if(err) throw err;
-    db = client.db('urlsDB');
+    db = client.db('mini-url');
     console.log('Connected to database: ' + db.databaseName);
     //db.close();
 })

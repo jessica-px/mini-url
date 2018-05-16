@@ -2,7 +2,8 @@ const express = require('express');
 const validUrl = require('valid-url');
 const base58 = require("base58");
 const url = require('url') ;
-const webHost = 'http://localhost:8080/';
+//const webHost = 'http://localhost:8080/';
+const webHost = 'https://jp-mini.herokuapp.com/';
 
 const hostname = require('os').hostname;
 
@@ -74,34 +75,7 @@ const addToDatabase = (inputUrl, db, httpRes) => {
    
 }
 
-const newMiniUrl = (inputUrl, count, db, httpRes) => {
-    console.log('Making new mini url...')
-    db.collection('urls').findOne({url: inputUrl}, (err, res) => {
-        if (err) throw err;
-        const id = toString(res._id).slice(-6);
-        const encodedId = base58.encode(new Buffer(id));
-        const newMini = 'http://' + encodedId + '/';
 
-        db.collection('urls').update({url: inputUrl}, {url: inputUrl, miniUrl: newMini}, (err, res) => {
-            if (err) throw err;
-            sendMiniUrl(newMini, httpRes);
-        })
-    });
-    
-
-    
-}
-
-
-// const saveUrl = (inputUrl, db, httpRes) => {
-//     const outputUrl = {url: inputUrl, miniUrl: newMini};
-//     db.collection('urls').insertOne(outputUrl, (err, res) => {
-//         if (err) throw err;
-//         console.log('Added url: ' + inputUrl + ' ' + res.ops[0]);
-
-//         sendMiniUrl(miniUrl, res);
-//     });
-// }
 
 const sendMiniUrl = (miniUrl, res) => {
     res.send("Your mini url: " + miniUrl);
